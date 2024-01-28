@@ -1,6 +1,7 @@
 package dev.galiev.countryserviceapp.service
 
 import dev.galiev.countryserviceapp.service.model.CountriesList
+import dev.galiev.countryserviceapp.service.model.CountryData
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -20,4 +21,8 @@ const val url = "http://10.0.2.2:8080/countries/"
 
 suspend fun getCountries(): CountriesList {
     return client.get(url).body<CountriesList>()
+}
+
+suspend fun getCountryData(name: String): CountryData {
+    return client.get("$url$name").body<CountryData>()
 }
